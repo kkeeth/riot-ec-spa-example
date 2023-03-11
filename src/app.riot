@@ -19,7 +19,7 @@
       <div if={!state.showNotFound} class="row">
         <div class="column column-60">
           <route each={page in state.pages} path={page.path}>
-            <main is={page.componentName}/>
+            <main is={page.componentName} initial-props={page.initialProps} />
           </route>
         </div>
         <!-- notice how <sidebar> is registered as global component -->
