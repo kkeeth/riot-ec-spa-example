@@ -1,26 +1,27 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const webpack = require('webpack')
-const path = require('path')
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require("webpack");
+const path = require("path");
+const isDevelopment = process.env.NODE_ENV === "development";
 
 module.exports = {
   entry: {
-    app: './src/index.js',
+    app: "./src/index.ts",
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name].bundle.js',
-    clean: true
+    path: path.resolve(__dirname, "dist"),
+    filename: "[name].bundle.js",
+    clean: true,
   },
   externals: {
-    url: 'url',
+    url: "url",
   },
-  devtool: 'source-map',
+  devtool: "source-map",
   optimization: {
     runtimeChunk: {
-      name: 'runtime',
+      name: "runtime",
     },
     splitChunks: {
-      chunks: 'async',
+      chunks: "async",
       minSize: 20000,
       minRemainingSize: 0,
       minChunks: 1,
@@ -44,26 +45,49 @@ module.exports = {
   devServer: {
     hot: true,
     open: true,
-    historyApiFallback: true
+    historyApiFallback: true,
   },
   module: {
     rules: [
       {
         test: /\.riot$/,
         exclude: /node_modules/,
-        use: [{
-          loader: '@riotjs/webpack-loader',
-          options: {
-            hot: true
-          }
-        }]
-      }
-    ]
+        use: [
+          {
+            loader: "ts-loader",
+            options: {
+              transpileOnly: isDevelopment,
+              appendTsSuffixTo: [/\.riot$/],
+            },
+          },
+          {
+            loader: "@riotjs/webpack-loader",
+            options: {
+              hot: true,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.ts$/,
+        use: [
+          {
+            loader: "ts-loader",
+            options: {
+              transpileOnly: isDevelopment,
+            },
+          },
+        ],
+      },
+    ],
+  },
+  resolve: {
+    extensions: [".ts", ".js", ".riot"],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'src/index.html'
+      template: "src/index.html",
     }),
     new webpack.HotModuleReplacementPlugin(),
-  ]
-}
+  ],
+};

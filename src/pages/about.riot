@@ -9,7 +9,8 @@
      <button onclick="{ decrement }">-</button>
    </div>
 
-   <script>
+   <script lang="ts">
+     import {RiotComponent, withTypes} from 'riot';
      import * as uhooks from 'uhooks'
      import { withHook } from '../hooks/with-hooks.js'
      const { useState } = uhooks
