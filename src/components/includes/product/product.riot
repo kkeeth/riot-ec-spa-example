@@ -3,7 +3,7 @@
     <h2 class="product__title">{props.product.name}</h2>
     <p class="product__description">{props.product.description}</p>
     <div class="product__image">
-      <Image src={props.product.image.src} alt={props.product.image.alt} />
+      <img src={props.product.image.src} alt={props.product.image.alt} />
     </div>
     <div class="product__price-button-container">
       <div class="product__price">${props.product.price.toFixed(2)}</div>
@@ -21,7 +21,6 @@
 
   <script>
     export default {
-
     }
   </script>
 
