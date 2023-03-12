@@ -10,24 +10,33 @@
    </div>
 
    <script lang="ts">
-     import {RiotComponent, withTypes} from 'riot';
-     import * as uhooks from 'uhooks'
-     import { withHook } from '../hooks/with-hooks.js'
-     const { useState } = uhooks
+     import * as uhooks from 'uhooks';
+     const IS_MOUNTED = Symbol();
+     const { useState } = uhooks;
 
-     export default withHook((props) => {
-       const { initialProps } = props
-       const [count, setCount] = useState(initialProps.count)
+     export default {
+       onBeforeMount(props) {
+         const hooks = uhooks.hooked((props, component) => {
+         Object.assign(component, this.setup(props));
+           if (component[IS_MOUNTED]) component.update();
+         });
+         hooks(props, this);
+         this[IS_MOUNTED] = true;
+       },
+       setup(props) {
+          const { initialProps } = props
+          const [count, setCount] = useState(initialProps.count)
 
-       const increment = () => setCount(count + 1)
-       const decrement = () => setCount(count - 1)
+          const increment = () => setCount(count + 1)
+          const decrement = () => setCount(count - 1)
 
-       return {
-         count,
-         increment,
-         decrement
-       }
-     })
+          return {
+            count,
+            increment,
+            decrement
+          }
+        },
+      }
    </script>
 
    <style>

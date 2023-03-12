@@ -22,22 +22,16 @@
             <main is={page.componentName} initial-props={page.initialProps} />
           </route>
         </div>
-        <!-- notice how <sidebar> is registered as global component -->
-        <div class="column column-40">
-          <sidebar/>
-        </div>
       </div>
     </router>
   </div>
 
-  <script lang="ts">
-    import { RiotComponent, withTypes } from 'riot';
+  <script>
     import { Router, Route, route, toRegexp, match } from '@riotjs/route'
     import lazy from '@riotjs/lazy'
     import Loader from './components/includes/loader/loader.riot'
     import NotFound from './pages/not-found.riot'
     import pages from './pages'
-    import { RandomComponentProps, RandomComponentState } from './types'
 
     export default {
       components: {

@@ -7,4 +7,4 @@ import registerGlobalComponents from './register-global-components'
 registerGlobalComponents()
 
 // mount the root tag
-component(App)(document.getElementById('root'))
+component(App)(document.getElementById('root') || document.body)
