@@ -1,0 +1,24 @@
+<product-list>
+  <div class="product-list">
+    <Product each={ (product, index) in props.products} product={product} key={index} />
+  </div>
+
+  <script>
+    import Product from '../product/product.riot';
+    export default {
+      components: {
+        Product
+      }
+    }
+  </script>
+
+  <style>
+    .product-list {
+      display: flex;
+      padding: 2rem;
+      gap: 10px 20px;
+    }
+    Product + Product {
+    }
+  </style>
+</product-list>
