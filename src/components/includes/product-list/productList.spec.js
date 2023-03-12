@@ -1,6 +1,7 @@
-import ProductList from "./product-list.riot";
+import ProductList from "./productList.riot";
 import { expect } from "chai";
 import { component } from "riot";
+import initialProducts from "../../../fixtures/productList";
 
 describe("Product List Component Unit Test", () => {
   const mountProductList = component(ProductList);
@@ -9,18 +10,12 @@ describe("Product List Component Unit Test", () => {
     const div = document.createElement("div");
 
     const component = mountProductList(div, {
-      product: {
-        id: 12345,
-        name: "hogehoge",
-        price: 999,
-        description: "hogehoge",
-        image: {
-          src: "https://placeimg.com/640/480/animals",
-          alt: "animals",
-        },
-      },
+      products: initialProducts,
     });
 
-    expect(component.$("h2").innerHTML).to.be.equal("hogehoge");
+    expect(component.$$("product").length).to.be.equal(3);
+    expect(component.$$(".product h2")[1].innerHTML).to.be.equal(
+      "product name2",
+    );
   });
 });

@@ -3,43 +3,13 @@
 
   <script>
     import ProductList from '../components/includes/product-list/productList.riot';
+    import initialProducts from '../fixtures/productList';
 
     export default {
       components: {
         ProductList
       },
-      products: [
-        {
-          id: 111,
-          name: "product name",
-          price: 999,
-          description: 'hogehoge',
-          image: {
-            src: "https://placeimg.com/200/200/animals",
-            alt: 'animals'
-          }
-        },
-        {
-          id: 222,
-          name: "product name",
-          price: 999,
-          description: 'hogehoge',
-          image: {
-            src: "https://placeimg.com/200/200/animals",
-            alt: 'animals'
-          }
-        },
-        {
-          id: 333,
-          name: "product name",
-          price: 999,
-          description: 'hogehoge',
-          image: {
-            src: "https://placeimg.com/200/200/animals",
-            alt: 'animals'
-          }
-        },
-      ]
+      products: initialProducts
     }
   </script>
 </home>
