@@ -2,7 +2,7 @@
 
 An implementation of the application in this article using [Riot.js](https://riot.js.org).
 
-[https://snipcart.com/blog/next-js-ecommerce-tutorial-example](https://snipcart.com/blog/next-js-ecommerce-tutorial-example)
+[Next.js E-Commerce Tutorial: SPA Example](https://snipcart.com/blog/next-js-ecommerce-tutorial-example)
 
 ## Start
 
