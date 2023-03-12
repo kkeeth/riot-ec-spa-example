@@ -1,19 +1,21 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
-const path = require("path");
 const isDevelopment = process.env.NODE_ENV === "development";
 
 module.exports = {
   entry: {
-    app: "./src/index.ts",
+    app: "./src/index.js",
   },
   output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "[name].bundle.js",
     clean: true,
   },
+  mode: process.env.NODE_ENV || "development",
   externals: {
     url: "url",
+  },
+  target: ["web", "es5"],
+  stats: {
+    errorDetails: true,
   },
   devtool: "source-map",
   optimization: {
@@ -54,13 +56,6 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           {
-            loader: "ts-loader",
-            options: {
-              transpileOnly: isDevelopment,
-              appendTsSuffixTo: [/\.riot$/],
-            },
-          },
-          {
             loader: "@riotjs/webpack-loader",
             options: {
               hot: true,
@@ -68,21 +63,17 @@ module.exports = {
           },
         ],
       },
-      {
-        test: /\.ts$/,
-        use: [
-          {
-            loader: "ts-loader",
-            options: {
-              transpileOnly: isDevelopment,
-            },
-          },
-        ],
-      },
     ],
   },
   resolve: {
-    extensions: [".ts", ".js", ".riot"],
+    extensions: [".js", ".riot"],
+    fallback: {
+      assert: require.resolve("assert/"),
+      os: false,
+    },
+    alias: {
+      path: "path-browserify",
+    },
   },
   plugins: [
     new HtmlWebpackPlugin({

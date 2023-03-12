@@ -1,4 +1,23 @@
 <home>
-  <h1>I am the home page</h1>
-  <p>Welcome</p>
+  <product product={ product } />
+
+  <script>
+    import Product from '../components/includes/product/product.riot';
+
+    export default {
+      components: {
+        Product
+      },
+      product: {
+        id: 12345,
+        name: "product name",
+        price: 999,
+        description: 'hogehoge',
+        image: {
+          src: "https://placeimg.com/640/480/animals",
+          alt: 'animals'
+        }
+      }
+    }
+  </script>
 </home>
