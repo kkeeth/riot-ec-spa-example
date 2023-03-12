@@ -9,6 +9,7 @@
     "cov-html": "nyc report --reporter=html",
     "build": "webpack --mode production",
     "prepublishOnly": "npm test",
+    "deploy": "npm run build && gh-pages -d dist",
     "start": "NODE_ENV=development webpack serve --mode development --hot --port 3000"
   },
   "keywords": [
@@ -33,6 +34,7 @@
     "eslint": "^8.36.0",
     "eslint-config-riot": "^4.0.0",
     "esm": "^3.2.25",
+    "gh-pages": "^5.0.0",
     "html-webpack-plugin": "^5.5.0",
     "jsdom": "^20.0.0",
     "jsdom-global": "^3.0.2",
